@@ -2,32 +2,15 @@
 
 from tkinter import *
 from PIL import ImageTk,Image
-import time, os, random, functools,sys, pygame#subprocess #winsound,
+import time, os, random, functools,sys, pygame, subprocess, winsound
 #from playsound import playsound
 import simpleaudio as sa
-
-
-OS = ""
-
 from sys import platform
-if platform == "linux" or platform == "linux2":
-    # linux
-    OS = "/"
-elif platform == "darwin":
-    # OS X
-    OS = "/"
-elif platform == "win32":
-    # Windows...
-    OS = r"\""
+
 
 #file path of folder
-PATH = os.path.dirname(os.path.realpath(sys.argv[0]))
-IMAGE_PATH = PATH+OS+'images'
-SOUND_PATH = PATH+OS+'sounds'
-
-#to play sounds universally using pygame (since winsound is not available on macos)
-#pygame.init()
-
+IMAGE_PATH = os.path.join(os.getcwd(), "images")
+SOUND_PATH = os.path.join(os.getcwd(), "sounds")
 
 print("WORKS")
 
@@ -147,8 +130,8 @@ class singlePlayer(Frame):
         elif (color == "yellow" ):
             self.bottomleftyellow.config(image=self.YELLOWSIMON)
 
-        listofsoundspaths = [SOUND_PATH+OS+"simonsound1.wav",
-                             SOUND_PATH+OS+"simonsound2.wav"]
+        listofsoundspaths = [os.path.join(SOUND_PATH, "simonsound1.wav"),
+                             os.path.join(SOUND_PATH, "simonsound2.wav")]
 
         #winsound.PlaySound((random.choice(listofsoundspaths)), winsound.SND_ASYNC + winsound.SND_FILENAME)
 
@@ -283,40 +266,40 @@ class singlePlayer(Frame):
 
         imagesize = 250
 
-        YELLOWSIMON = Image.open(IMAGE_PATH+"/yellowblink.png")
+        YELLOWSIMON = Image.open(os.path.join(IMAGE_PATH, "yellowblink.png"))
         YELLOWSIMON.thumbnail((imagesize, imagesize))
         self.YELLOWSIMON = ImageTk.PhotoImage(YELLOWSIMON)
 
-        REDSIMON = Image.open(IMAGE_PATH+"/redblink.png")
+        REDSIMON = Image.open(os.path.join(IMAGE_PATH, "redblink.png"))
         REDSIMON.thumbnail((imagesize, imagesize))
         self.REDSIMON = ImageTk.PhotoImage(REDSIMON)
 
-        BLUESIMON = Image.open(IMAGE_PATH+"/blueblink.png")
+        BLUESIMON = Image.open(os.path.join(IMAGE_PATH, "blueblink.png"))
         BLUESIMON.thumbnail((imagesize, imagesize))
         self.BLUESIMON = ImageTk.PhotoImage(BLUESIMON)
 
-        GREENSIMON = Image.open(IMAGE_PATH+"/greenblink.png")
+        GREENSIMON = Image.open(os.path.join(IMAGE_PATH, "greenblink.png"))
         GREENSIMON.thumbnail((imagesize, imagesize))
         self.GREENSIMON = ImageTk.PhotoImage(GREENSIMON)
 #-----------------------------------------------------------------------
 
-        YELLOWSIMONOFF = Image.open(IMAGE_PATH+OS+"yellowoff.png")
+        YELLOWSIMONOFF = Image.open(os.path.join(IMAGE_PATH, "yellowoff.png"))
         YELLOWSIMONOFF.thumbnail((imagesize, imagesize))
         self.YELLOWSIMONOFF = ImageTk.PhotoImage(YELLOWSIMONOFF)
 
-        REDSIMONOFF = Image.open(IMAGE_PATH+OS+"redoff.png")
+        REDSIMONOFF = Image.open(os.path.join(IMAGE_PATH, "redoff.png"))
         REDSIMONOFF.thumbnail((imagesize, imagesize))
         self.REDSIMONOFF = ImageTk.PhotoImage(REDSIMONOFF)
 
-        BLUESIMONOFF = Image.open(IMAGE_PATH+OS+"blueoff.png")
+        BLUESIMONOFF = Image.open(os.path.join(IMAGE_PATH, "blueoff.png"))
         BLUESIMONOFF.thumbnail((imagesize, imagesize))
         self.BLUESIMONOFF = ImageTk.PhotoImage(BLUESIMONOFF)
 
-        GREENSIMONOFF = Image.open(IMAGE_PATH+OS+"greenoff.png")
+        GREENSIMONOFF = Image.open(os.path.join(IMAGE_PATH, "greenoff.png"))
         GREENSIMONOFF.thumbnail((imagesize, imagesize))
         self.GREENSIMONOFF = ImageTk.PhotoImage(GREENSIMONOFF)
 
-        BLANKSIMON = Image.open(IMAGE_PATH+OS+"offsimon.png")
+        BLANKSIMON = Image.open(os.path.join(IMAGE_PATH, "offsimon.png"))
         BLANKSIMON.thumbnail((imagesize, imagesize))
         self.BLANKSIMON = ImageTk.PhotoImage(BLANKSIMON)
 
@@ -355,8 +338,8 @@ class gameMenu(Frame):
     def changeTitleImage(self):
         listofimages = [self.REDSIMON,self.YELLOWSIMON,self.BLUESIMON,self.GREENSIMON,self.BLANKSIMON]
 
-        listofsoundspaths = [SOUND_PATH+OS+"simonsound1.wav",
-                             SOUND_PATH+OS+"simonsound2.wav"]
+        listofsoundspaths = [os.path.join(SOUND_PATH, "simonsound1.wav"),
+                             os.path.join(SOUND_PATH, "simonsound2.wav")]
 
         self.titleimage.config(image =random.choice(listofimages))
 
@@ -376,23 +359,23 @@ class gameMenu(Frame):
 
         imagesize = 500
 
-        YELLOWSIMON = Image.open(IMAGE_PATH+OS+"yellowsimon.png")
+        YELLOWSIMON = Image.open(os.path.join(IMAGE_PATH, "yellowsimon.png"))
         YELLOWSIMON.thumbnail((imagesize, imagesize))
         self.YELLOWSIMON = ImageTk.PhotoImage(YELLOWSIMON)
 
-        REDSIMON = Image.open(IMAGE_PATH+OS+"redsimon.png")
+        REDSIMON = Image.open(os.path.join(IMAGE_PATH, "redsimon.png"))
         REDSIMON.thumbnail((imagesize, imagesize))
         self.REDSIMON = ImageTk.PhotoImage(REDSIMON)
 
-        BLUESIMON = Image.open(IMAGE_PATH+OS+"bluesimon.png")
+        BLUESIMON = Image.open(os.path.join(IMAGE_PATH, "bluesimon.png"))
         BLUESIMON.thumbnail((imagesize, imagesize))
         self.BLUESIMON = ImageTk.PhotoImage(BLUESIMON)
 
-        GREENSIMON = Image.open(IMAGE_PATH+OS+"greensimon.png")
+        GREENSIMON = Image.open(os.path.join(IMAGE_PATH, "greensimon.png"))
         GREENSIMON.thumbnail((imagesize, imagesize))
         self.GREENSIMON = ImageTk.PhotoImage(GREENSIMON)
 
-        BLANKSIMON = Image.open(IMAGE_PATH+OS+"offsimon.png")
+        BLANKSIMON = Image.open(os.path.join(IMAGE_PATH, "offsimon.png"))
         BLANKSIMON.thumbnail((imagesize, imagesize))
         self.BLANKSIMON = ImageTk.PhotoImage(BLANKSIMON)
 
@@ -417,7 +400,7 @@ whichGUI = "gameMenu"
 
 root  = Tk()
 root.title("SimonSays by Miguel Zavala")
-root.iconbitmap(IMAGE_PATH+OS+"simonicon.ico")
+root.iconbitmap(os.path.join(IMAGE_PATH, "simonicon.ico"))
 
 
 loseMenu1 = loseMenu(root)
